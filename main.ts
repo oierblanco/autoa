@@ -8,6 +8,9 @@ radio.onReceivedNumber(function (receivedNumber) {
     if (receivedNumber == 3) {
         limpia_parabrisas()
     }
+    if (receivedNumber == 4) {
+        music.playMelody("C C - - - - - - ", 120)
+    }
 })
 function ezkerreko_intermitentea () {
     for (let index = 0; index < 4; index++) {
@@ -24,9 +27,9 @@ function ezkerreko_intermitentea () {
 }
 function limpia_parabrisas () {
     for (let index = 0; index < 4; index++) {
-        pins.servoWritePin(AnalogPin.P0, 0)
-        basic.pause(100)
         pins.servoWritePin(AnalogPin.P0, 180)
+        basic.pause(100)
+        pins.servoWritePin(AnalogPin.P0, 0)
         basic.pause(500)
     }
 }
@@ -53,5 +56,8 @@ basic.forever(function () {
     }
     if (input.logoIsPressed()) {
         radio.sendNumber(3)
+    }
+    if (input.buttonIsPressed(Button.A)) {
+        radio.sendNumber(4)
     }
 })
